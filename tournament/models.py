@@ -66,6 +66,9 @@ class Regiter_team(models.Model):
 
 class Schedule(models.Model):
     tournament = models.ForeignKey(Tournamet_register, on_delete=models.CASCADE)
+    started_time = models.DateField( auto_now_add=True)  
+    tournament_end=models.BooleanField(default=False)
+    
     
     
     def __str__(self):
@@ -79,11 +82,19 @@ class confomed_team(models.Model):
         return self.regiter_team.team.name 
 
 class Match(models.Model):
+    CHOICES = (
+        ('soon', 'soon'),
+        ('started', 'Started'),
+        ('ended', 'Ended'),
+    )
     tournament = models.ForeignKey(Schedule, on_delete=models.CASCADE)
     team1 = models.ForeignKey(confomed_team, on_delete=models.CASCADE, related_name='team1_matches')
     team2 = models.ForeignKey(confomed_team, on_delete=models.CASCADE, related_name='team2_matches')
     match_date = models.DateTimeField()
     location = models.CharField(max_length=100)
+    status = models.CharField(max_length=10, choices=CHOICES)
+    score = models.TextField(null=True)
+
 
 @receiver(post_save, sender=Tournamet_register)
 def create_schedule_on_registration_closed(sender, instance, **kwargs):

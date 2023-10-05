@@ -2,4 +2,36 @@
 
 {% block content %}
 
+
+<div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+            <img class="card-img-top" src="https://th.bing.com/th/id/OIP.trUUwbzTyizWx0x7hpw7RAHaEo?pid=ImgDet&rs=1" alt="Card image cap">
+            <br>
+            <br>
+            <br>
+
+          <h5 class="card-title">Create Tournament</h5>
+          <p class="card-text">Make a Tournament or create a league</p>
+          <a href="{% url "tournament_register_list" %}" class="btn btn-primary">List Tournament</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+            <img class="card-img-top" src="https://th.bing.com/th/id/OIP.BltkJyJZBbZfbAhrq7yY5QHaEK?pid=ImgDet&rs=1" alt="Card image cap">
+            <br>
+            <br>
+            <br>
+            <br>
+            
+          <h5 class="card-title">Started Match and Events</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="{% url "view_schedule" %}" class="btn btn-primary">List Schedule</a>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock  %}

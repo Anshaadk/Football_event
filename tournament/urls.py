@@ -32,5 +32,7 @@ urlpatterns = [
     path('playerliting/<int:id>/',reg_player_list,name='playerlist'),
     path('view_schedule/',view_schedule, name='view_schedule'),
     path('create-matches/<int:schedule_id>/',create_matches, name='create_matches'),
+    path('matches/<int:schedule_id>/', MatchListView.as_view(), name='match_list'),
+    path('matches/<int:pk>/edit/', edit_match, name='edit_match'),
     
 ]

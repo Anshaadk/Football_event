@@ -8,7 +8,7 @@
         <th scope="col">#</th>
         <th scope="col">Tournament</th>
         <th scope="col">Team</th>
-        <th scope="col">Registration Date</th>
+        
         <!-- Add other fields as needed -->
       </tr>
     </thead>
@@ -16,7 +16,10 @@
       {% for schedule in schedules %}
         <tr>
           <th scope="row">{{ forloop.counter }}</th>
-          <td><a href="{% url "create_matches" schedule.id %}">{{ schedule.tournament.name }}</a></td>
+          <td><a href="{% url "match_list" schedule.id %}">{{ schedule.tournament.name }}</a></td>
+          <td><a href="{% url "create_matches" schedule.id %}">Add Match</a></td>
+          
+
           
           
           <!-- Add other fields as needed -->

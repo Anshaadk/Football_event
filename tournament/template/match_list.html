@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Matches for {{ schedule.tournament.name }}</h1>
+    <ul>
+        {% for match in matches %}
+            <li>
+                {{ match.team1.regiter_team.team.name }} vs. {{ match.team2.regiter_team.team.name }}
+                <br>
+                Match Date: {{ match.match_date }}
+                <br>
+                Location: {{ match.location }}
+                <br>
+                Status: {{ match.status }}
+                <br>
+                Details: {{ match.score }}
+
+                <br>
+            <a class="btn" href="{% url 'edit_match' match.id%}">Edit</a>
+
+                
+            </li>
+        {% empty %}
+            <li>No matches available.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'view_schedule' %}">Back to Schedule</a>
+{% endblock %}

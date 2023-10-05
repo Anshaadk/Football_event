@@ -20,14 +20,14 @@
                     <a class="nav-link" href="{% url 'user_profile' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href={% url "admin_home" %}>admin</a>
+                    <a class="nav-link" href={% url "home" %}>admin</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'view_schedule'%}">view_schedule</a>
-
+                    <a class="nav-link" href={% url "admin_home" %}>List Of All Teams</a>
                 </li>
+                
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Status</a>
+                    <button class="btn btn-sm btn-outline-secondary" type="button"><a href="{% url "logout" %}">logout</a></button>
                 </li>
             </ul>
         </div>

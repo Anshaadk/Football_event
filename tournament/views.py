@@ -292,3 +292,35 @@ def create_matches(request, schedule_id):
     }
 
     return render(request, 'create_matches.html', context)
+
+class MatchListView(ListView):
+    model = Match
+    template_name = 'match_list.html'
+    context_object_name = 'matches'
+
+    def get_queryset(self):
+        # Retrieve the schedule based on the schedule_id URL parameter
+        schedule_id = self.kwargs.get('schedule_id')
+        schedule = get_object_or_404(Schedule, pk=schedule_id)
+
+        # Filter matches by the selected schedule
+        return Match.objects.filter(tournament__id=schedule.id)
+    
+    
+def edit_match(request, pk):
+    match = get_object_or_404(Match, pk=pk)
+
+    if request.method == 'POST':
+        form = EditMatchForm(request.POST, instance=match)
+        if form.is_valid():
+            form.save()
+            return redirect('match_list', schedule_id=match.tournament.id)
+    else:
+        form = EditMatchForm(instance=match)
+
+    context = {
+        'form': form,
+        'match': match,
+    }
+
+    return render(request, 'edit_match.html', context)

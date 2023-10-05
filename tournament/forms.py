@@ -53,7 +53,7 @@ class RegiterTeamForm(forms.ModelForm):
 class MatchCreationForm(forms.ModelForm):
     class Meta:
         model = Match
-        fields = ['team1', 'team2', 'match_date', 'location']
+        fields = '__all__'
         widgets = {
             'match_date': forms.DateInput(attrs={'type': 'date'}),
         }
@@ -67,3 +67,11 @@ class MatchCreationForm(forms.ModelForm):
             registered_teams = schedule.confomed_team_set.all()
             self.fields['team1'].queryset = registered_teams
             self.fields['team2'].queryset = registered_teams
+            
+class EditMatchForm(forms.ModelForm):
+    class Meta:
+        model = Match
+        fields = [ 'match_date', 'location', 'status', 'score']
+        widgets = {
+            'match_date': forms.DateInput(attrs={'type': 'date'}),
+        }

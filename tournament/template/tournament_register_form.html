@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{% if request.resolver_match.url_name == 'tournament_register_create' %}Create{% else %}Update{% endif %} Tournament</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+  <a href="{% url 'tournament_register_list' %}" class="btn btn-secondary">Back to List</a>
+  
+{% endblock %}

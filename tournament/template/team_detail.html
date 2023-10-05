@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<a class="btn btn-primary" href={% url "register_team_member" team.id %}>Add Team Members</a>
+<h1>Team Details</h1>
+
+
+<p><strong>Team Name:</strong> {{ team.name }}</p>
+<p><strong>coach name:</strong> {{ team.coach.name }}</p> 
+
+<p><strong>manager name:</strong> {{ team.manager.name}}</p>
+<!-- Add more fields as needed -->
+
+
+<p> list of players</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">player name</th>
+        <th scope="col">edit</th>
+        <th scope="col">delete</th>
+        <!-- Add more columns as needed -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in players %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ i.name }}</td>
+          <td><a href="{% url 'edit_team_member' i.pk %}"> Edit</a></td>
+          <td><a href="{% url 'delete_team_member' i.id %}"> delete</a></td> 
+
+          <!-- Add more columns as needed -->
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

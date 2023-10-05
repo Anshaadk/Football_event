@@ -1,0 +1,14 @@
+{% extends "base.html" %}  <!-- Use your base template if you have one -->
+
+{% block content %}
+  <h2>Register Your Team</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ team_form.as_p }}
+    {{ member_form.as_p }}
+    {{ coach_form.as_p }}
+    {{ manager_form.as_p }}
+    <button type="submit">Register</button>
+  </form>
+  {% comment %} <a href="{% url 'registration_success' %}">Registration Successful</a> {% endcomment %}
+{% endblock %}

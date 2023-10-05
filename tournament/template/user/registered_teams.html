@@ -1,0 +1,36 @@
+{% extends "user/userbase.html" %}
+
+{% block user_content %}
+
+<h1>Teams Registered for {{ tournament.name }}</h1>
+<table class="table table-bordered">
+  <button class="btn btn-outline-success" type="button"><a href="{% url "register_team_create" %}">register your team</a></button>
+
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Team Name</th>
+      <th scope="col">View</th>
+
+      <!-- Add more columns as needed -->
+    </tr>
+  </thead>
+  <tbody>
+    {% for registered_team in registered_teams %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ registered_team.team.name }}</td>
+        <td><a href="{% url "playerlist" registered_team.team.id %}">View<a/></td>
+
+        <!-- Add more columns as needed -->
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="2">No teams registered for this tournament.</td>
+        <!-- Adjust colspan according to the number of columns -->
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a href="{% url 'tournament_register_list' %}" class="btn btn-secondary">Back to Tournament List</a>
+{% endblock %}

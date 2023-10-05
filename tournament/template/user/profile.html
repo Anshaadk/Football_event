@@ -1,0 +1,68 @@
+{% extends "user/userbase.html" %}
+
+{% block user_content %}
+
+<section style="background-color: #eee;">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col">
+          
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px;">
+              <h5 class="my-3">John Smith</h5>
+              <p class="text-muted mb-1">Full Stack Developer</p>
+              <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+              <div class="d-flex justify-content-center mb-2">
+                <a class="btn btn-primary" href={% url "register_team" %}>Add Team</a>
+<a class="btn btn-primary" href={% url "register_coach" %}>Add coach names</a>
+<a class="btn btn-primary" href={% url "register_manager" %}>Add manager name</a>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+        <div class="col-lg-8">
+          <h1>List of Teams</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Team Name</th>
+      <th scope="col">coach name</th>
+      <th scope="col">manager name</th>
+      <th scope="col">Edit</th>
+
+      <!-- Add more columns as needed -->
+    </tr>
+  </thead>
+  <tbody>
+    {% for team in teams %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td><a href="{% url 'team_detail' team.pk %}">{{ team.name }}</a></td>
+        <td>{{ team.coach.name }}</td>
+        <td>{{ team.manager.name }}</td>
+        <td><a href="{% url 'edit_team' team.pk %}">Edit</a></td>
+
+        <!-- Add more columns as needed -->
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+          </div>
+          
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

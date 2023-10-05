@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Schedule</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tournament</th>
+        <th scope="col">Team</th>
+        <th scope="col">Registration Date</th>
+        <!-- Add other fields as needed -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for schedule in schedules %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td><a href="{% url "create_matches" schedule.id %}">{{ schedule.tournament.name }}</a></td>
+          
+          
+          <!-- Add other fields as needed -->
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="4">No schedule data available.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

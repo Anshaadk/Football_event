@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Create Matches for {{ schedule.tournament.name }}</h1>
+  <p>Match Date: {{ schedule.match_date }}</p>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Match</button>
+  </form>
+  <a href="{% url 'view_schedule' %}">Back to Match List</a>
+{% endblock %}

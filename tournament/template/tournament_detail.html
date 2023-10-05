@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="display-4">Tournament Details</h1>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <h3 class="card-title">Name:</h3>
+            <p class="card-text">{{ tournament.name }}</p>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <h3 class="card-title">Teams:</h3>
+            <ul class="list-group">
+                {% for team in tournament.teams.all %}
+                    <li class="list-group-item">{{ team.name }}</li>
+                {% empty %}
+                    <li class="list-group-item">No teams are associated with this tournament.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <h3 class="card-title">Start Date:</h3>
+            <p class="card-text">{{ tournament.start_date }}</p>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <h3 class="card-title">End Date:</h3>
+            <p class="card-text">{{ tournament.end_date }}</p>
+        </div>
+    </div>
+
+    <p class="mt-4">{{ extra_detail }}</p>
+
+    <a href="{% url 'list_tournaments' %}" class="btn btn-primary mt-3">Back to List</a>
+</div>
+
+{% endblock %}

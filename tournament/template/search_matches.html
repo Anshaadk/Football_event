@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Search Matches</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="team1">Team 1:</label>
+    <select name="team1" id="team1">
+        <option value="">All Teams</option>
+        {% for team in teams %}
+            <option value="{{ team.id }}">{{ team.name }}</option>
+        {% endfor %}
+    </select>
+    <label for="team2">Team 2:</label>
+    <select name="team2" id="team2">
+        <option value="">All Teams</option>
+        {% for team in teams %}
+            <option value="{{ team.id }}">{{ team.name }}</option>
+        {% endfor %}
+    </select>
+    <label for="start_date">Start Date:</label>
+    <input type="date" name="start_date" id="start_date">
+    <label for="end_date">End Date:</label>
+    <input type="date" name="end_date" id="end_date">
+    <button type="submit">Search</button>
+</form>
+
+{% if matches %}
+    <h3>Search Results</h3>
+    <ul>
+        {% for match in matches %}
+            <li>{{ match.team1.name }} vs. {{ match.team2.name }} on {{ match.match_date }} at {{ match.match_time }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No matches found.</p>
+{% endif %}
+{% endblock %}

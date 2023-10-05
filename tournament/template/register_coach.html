@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Register Coach</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Register Coach</button>
+  </form>
+  <a href="{% url 'registration_success' %}">Registration Successful</a>
+{% endblock %}

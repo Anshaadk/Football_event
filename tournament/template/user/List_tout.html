@@ -14,6 +14,8 @@
   </thead>
   <tbody>
     {% for tournament in tournaments %}
+    {% if not tournament.registration_closed %}
+    
       <tr>
         <th scope="row">{{ forloop.counter }}</th>
         <td>{{ tournament.name }}</td>
@@ -24,6 +26,7 @@
           <!-- Add actions like editing or deleting here if needed -->
         </td>
       </tr>
+      {% endif %}
     {% empty %}
       <tr>
         <td colspan="4">No tournaments available.</td>

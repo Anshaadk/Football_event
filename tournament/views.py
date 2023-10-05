@@ -213,7 +213,7 @@ def login(request):
         user =auth.authenticate(username=user_name,password=pass_word) 
         if user is not None:
             auth.login(request,user)
-            return redirect(home)
+            return redirect(user_home)
         else:
             messages.info(request,'invalid some thing')
             return redirect(login)
@@ -253,7 +253,7 @@ def logout(request):
     return redirect(login)
     
 def user_home(request):
-    return render(request,'user/userbase.html')
+    return render(request,'user/user_home.html')
 
 def user_profile(request):
     user=request.user
@@ -324,3 +324,25 @@ def edit_match(request, pk):
     }
 
     return render(request, 'edit_match.html', context)
+
+
+def Matching_side(request):
+    schedules = Schedule.objects.all()
+    print(schedules)
+    context = {
+        'schedules': schedules,
+    }
+    return render(request, 'user/matching_side.html', context)
+
+class ViewMatch(ListView):
+    model = Match
+    template_name = './user/view_match.html'
+    context_object_name = 'matches'
+
+    def get_queryset(self):
+        # Retrieve the schedule based on the schedule_id URL parameter
+        schedule_id = self.kwargs.get('schedule_id')
+        schedule = get_object_or_404(Schedule, pk=schedule_id)
+
+        # Filter matches by the selected schedule
+        return Match.objects.filter(tournament__id=schedule.id)

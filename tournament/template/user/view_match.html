@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+{% extends "user/userbase.html" %}
 
-{% block content %}
+{% block user_content %}
     <h1>Matches for {{ schedule.tournament.name }}</h1>
     <div class="row">
         {% for match in matches %}
@@ -16,7 +16,7 @@
                             Status: {{ match.status }}<br>
                             Details: {{ match.score }}
                         </p>
-                        <a href="{% url 'edit_match' match.id %}" class="btn btn-primary">Edit</a>
+                        
                     </div>
                 </div>
             </div>
@@ -24,5 +24,5 @@
             <p>No matches available.</p>
         {% endfor %}
     </div>
-   
+    
 {% endblock %}

@@ -1,5 +1,37 @@
-{% extends "userbase.html" %}
+{% extends "user/userbase.html" %}
 
 {% block user_content %}
 
+
+<div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+            <img class="card-img-top" src="https://www.thoughtco.com/thmb/B3X-w0nL5X7Qkuk3eJPGEtSdtY4=/1500x1000/filters:fill(auto,1)/GettyImages-1044115524-5bdd9fbec9e77c00513be13b.jpg" alt="Card image cap">
+            <br>
+            <br>
+            <br>
+
+          <h5 class="card-title">Register to Events</h5>
+          <p class="card-text">Register to league or tournament</p>
+          <a href="{% url "tournament_listing" %}" class="btn btn-primary">UPCOMING EVENTS</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+            <img class="card-img-top" src="https://wallsdesk.com/wp-content/uploads/2016/07/FC-Liverpool-High-Quality-Wallpapers.jpg" alt="Card image cap">
+            <br>
+            <br>
+            <br>
+            <br>
+            
+          <h5 class="card-title">Kick Off</h5>
+          <p class="card-text">Match Details</p>
+          <a href="{% url "user_match_list" %}" class="btn btn-primary">Go There</a>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

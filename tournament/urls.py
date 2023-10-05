@@ -3,7 +3,7 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('',home,name='home'),
+    path('home/',home,name='home'),
     path('admin_side/',admin_home,name='admin_home'),
     path('register/team/', register_team, name='register_team'),
     path('register/team-member/<int:pk>/', register_team_member, name='register_team_member'),
@@ -17,7 +17,7 @@ urlpatterns = [
     path('register/',register,name='register'),
     path('login/',login,name='login'),
     path('logout/',logout,name='logout'),
-    path ('user_home/',user_home,name='user_home'),
+    path ('',user_home,name='user_home'),
     path ('user_profile/',user_profile,name='user_profile'),
     path('tournaments/', TournametRegisterListView, name='tournament_register_list'),
     path('tournaments/create/', TournametRegisterCreateView.as_view(), name='tournament_register_create'),
@@ -34,5 +34,8 @@ urlpatterns = [
     path('create-matches/<int:schedule_id>/',create_matches, name='create_matches'),
     path('matches/<int:schedule_id>/', MatchListView.as_view(), name='match_list'),
     path('matches/<int:pk>/edit/', edit_match, name='edit_match'),
+    path('user_match_list/',Matching_side,name='user_match_list'),
+    path('view_matches/<int:schedule_id>/',ViewMatch.as_view(), name='view_match'),
+    
     
 ]
